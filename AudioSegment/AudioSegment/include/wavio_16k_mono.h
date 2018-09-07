@@ -18,7 +18,7 @@ private:
 
 public:
 	int Read(const char* file, int16_t* buffer, int startMs, int endMs);
-	int Write(const char* file, int16_t* buffer, int startMs, int endMs);
+	int Write(const char* file, int16_t* buffer, int size);
 };
 
 #endif

@@ -38,15 +38,9 @@ int WaveIo16k::Read(const char* file, int16_t* buffer, int startMs, int endMs) {
 	return 0;
 }
 
-int WaveIo16k::Write(const char* file, int16_t* buffer, int startMs, int endMs) {
-	start = MsToByte(startMs);
-	end = MsToByte(endMs);
+int WaveIo16k::Write(const char* file, int16_t* buffer, int size) {
+	size = size << 1;
 	fopen_s(&fp, file, "wb");
-	if (start < 0 || end < 0
-		|| !fp) {
-		return -1;
-	}
-	size_t size = (end - start + BYTESSAMPLE);
 	fwrite(buffer, 1, size, fp);
 	fclose(fp);
 	fp = nullptr;
