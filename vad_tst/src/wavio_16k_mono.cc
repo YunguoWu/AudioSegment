@@ -1,4 +1,4 @@
-﻿#include "wavio_16k_mono.h"
+#include "wavio_16k_mono.h"
 
 #include <assert.h>
 #include <sys/stat.h>

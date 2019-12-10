@@ -1,4 +1,4 @@
-﻿#ifndef WAVIO_16K_MONO_H
+#ifndef WAVIO_16K_MONO_H
 #define WAVIO_16K_MONO_H
 
 #include <cstdio>

@@ -1,4 +1,4 @@
-﻿#ifndef VAD_IMP_H
+#ifndef VAD_IMP_H
 #define VAD_IMP_H
 
 #include "webrtc/common_audio/vad/include/webrtc_vad.h"

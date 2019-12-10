@@ -1,4 +1,4 @@
-﻿#include "vad_imp.h"
+#include "vad_imp.h"
 
 int VadImp::Init() {
 	int ret = WebRtcVad_Create(&handle);
