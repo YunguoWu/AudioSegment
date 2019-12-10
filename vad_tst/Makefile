@@ -20,7 +20,7 @@ TOPDIR 	?= $(shell pwd)/..
 
 INCLUDE    =	-I. \
 		-I./include \
-		-I../WebrtcVad
+		-I../WebrtcVad \
 
 #Locations
 
@@ -28,10 +28,8 @@ SRCDIR += .
 SRCDIR += ./src
 
 CSRCS += $(foreach d, $(SRCDIR), $(wildcard $d/*.cc))
-CSRCS += $(foreach d, $(SRCDIR), $(wildcard $d/*.cpp))
 
 COBJS += $(patsubst %.cc, %.o, $(CSRCS))
-COBJS += $(patsubst %.cpp, %.o, $(CSRCS))
 
 LIB_DIR = $(TOPDIR)/WebrtcVad
 
@@ -39,6 +37,8 @@ LD_FLAGS = -Xlinker "-(" $(LIBS) -Xlinker "-)" -L$(LIB_DIR)
 
 #build rule
 .PHONY: all target install clean
+
+##$(warning ==$(COBJS))
 
 all: $(COBJS)
 ifeq ($(OS_SUPPORT), 1)

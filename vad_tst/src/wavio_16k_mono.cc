@@ -20,28 +20,34 @@ long long WaveIo16k::MsToByte(int ms) {
 
 int WaveIo16k::Read(const char* file, int16_t* buffer, int startMs, int endMs) {
 	struct stat file_info;
+	FILE *fp = nullptr;
+	size_t ret;
+	
 	if (stat(file, &file_info) < 0) {
 		return -1;
 	}
 	start = MsToByte(startMs);
 	end = MsToByte(endMs);
 	size_t size = (end - start + BYTESSAMPLE);
-	fopen_s(&fp, file, "rb");
+	fp = fopen(file, "rb");
 	if (start < 0 || end < 0 
 		|| !fp || file_info.st_size < start + size) {
 		return -1;
 	}
 	fseek(fp, HEADSIZE + start, SEEK_SET);
-	fread(buffer, 1, size, fp);
+	ret = fread(buffer, 1, size, fp);
 	fclose(fp);
 	fp = nullptr;
 	return 0;
 }
 
 int WaveIo16k::Write(const char* file, int16_t* buffer, int size) {
+	FILE *fp = nullptr;
+	size_t ret;
+	
 	size = size << 1;
-	fopen_s(&fp, file, "wb");
-	fwrite(buffer, 1, size, fp);
+	fp = fopen(file, "wb");
+	ret = fwrite(buffer, 1, size, fp);
 	fclose(fp);
 	fp = nullptr;
 	return 0;
